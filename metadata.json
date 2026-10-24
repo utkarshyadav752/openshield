@@ -1,0 +1,6 @@
+{
+  "name": "OpenShield",
+  "description": "Privacy-first consumer protection platform with an AI-powered Terms & Conditions URL analyzer and a live Manifest V3 Chrome extension for detecting hidden fees, subscription traps, and dark patterns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "domain": "amazon.com",
+    "name": "Amazon",
+    "tosdrGrade": "D",
+    "tosdrSummary": "Includes broad third-party advertising data sharing, automatic Prime membership renewals, and dispute resolution clauses.",
+    "tosdrSourceUrl": "https://tosdr.org/en/service/190",
+    "cancellationDifficulty": "medium",
+    "cancellationSummary": "Prime membership can be canceled online through Account & Lists > Prime Membership, though multi-step retention prompts appear.",
+    "verifiedCancellationUrl": "https://www.amazon.com/mc/pipelines/cancellation",
+    "verifiedPolicyUrl": "https://www.amazon.com/gp/help/customer/display.html?nodeId=508088",
+    "lastVerified": "2026-03-15",
+    "attribution": "Adapted from ToS;DR (CC BY-SA 3.0) and JustDeleteMe (MIT)"
+  },
+  {
+    "domain": "netflix.com",
+    "name": "Netflix",
+    "tosdrGrade": "C",
+    "tosdrSummary": "Subscription renews automatically every billing cycle with no partial-month refunds; includes binding arbitration and class-action waiver in US terms.",
+    "tosdrSourceUrl": "https://tosdr.org/en/service/198",
+    "cancellationDifficulty": "easy",
+    "cancellationSummary": "Online cancellation is available directly in Account settings with access continuing through the end of the current billing period.",
+    "verifiedCancellationUrl": "https://www.netflix.com/cancelplan",
+    "verifiedPolicyUrl": "https://help.netflix.com/legal/termsofuse",
+    "lastVerified": "2026-03-10",
+    "attribution": "Adapted from ToS;DR (CC BY-SA 3.0) and JustDeleteMe (MIT)"
+  },
+  {
+    "domain": "adobe.com",
+    "name": "Adobe Creative Cloud",
+    "tosdrGrade": "D",
+    "tosdrSummary": "Annual plans billed monthly carry a 50% early termination fee if canceled after 14 days, alongside automatic annual contract renewal.",
+    "tosdrSourceUrl": "https://tosdr.org/en/service/310",
+    "cancellationDifficulty": "hard",
+    "cancellationSummary": "Canceling an annual-paid-monthly plan after 14 days triggers an early termination fee of 50% of remaining contract obligations.",
+    "verifiedCancellationUrl": "https://account.adobe.com/plans",
+    "verifiedPolicyUrl": "https://www.adobe.com/legal/subscription-terms.html",
+    "lastVerified": "2026-04-01",
+    "attribution": "Adapted from ToS;DR (CC BY-SA 3.0) and JustDeleteMe (MIT)"
+  },
+  {
+    "domain": "nytimes.com",
+    "name": "The New York Times",
+    "tosdrGrade": "C",
+    "tosdrSummary": "Promotional introductory rates automatically convert to standard monthly billing rates unless canceled prior to the billing date.",
+    "tosdrSourceUrl": "https://tosdr.org/en/service/287",
+    "cancellationDifficulty": "medium",
+    "cancellationSummary": "Online cancellation is supported via Account Billing, though subscribers may encounter retention offers before final confirmation.",
+    "verifiedCancellationUrl": "https://myaccount.nytimes.com/seg/subscription",
+    "verifiedPolicyUrl": "https://help.nytimes.com/hc/en-us/articles/115014893968-Terms-of-sale",
+    "lastVerified": "2026-02-20",
+    "attribution": "Adapted from ToS;DR (CC BY-SA 3.0) and JustDeleteMe (MIT)"
+  },
+  {
+    "domain": "spotify.com",
+    "name": "Spotify",
+    "tosdrGrade": "C",
+    "tosdrSummary": "Trial subscriptions convert automatically to paid monthly plans; US terms include mandatory individual arbitration and class-action waiver.",
+    "tosdrSourceUrl": "https://tosdr.org/en/service/225",
+    "cancellationDifficulty": "easy",
+    "cancellationSummary": "Premium subscriptions can be canceled online at any time from the account page; full account deletion requires a multi-step support flow.",
+    "verifiedCancellationUrl": "https://www.spotify.com/account/subscription/",
+    "verifiedPolicyUrl": "https://www.spotify.com/us/legal/end-user-agreement/",
+    "lastVerified": "2026-03-22",
+    "attribution": "Adapted from ToS;DR (CC BY-SA 3.0) and JustDeleteMe (MIT)"
+  }
+]

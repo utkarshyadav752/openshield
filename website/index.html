@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenShield — Understand the fine print before you agree</title>
+    <link rel="stylesheet" href="website.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="brand">OpenShield</a>
+      <nav class="nav-links">
+        <a href="#analyze-link">Analyze a link</a>
+        <a href="#browser-extension">Browser extension</a>
+      </nav>
+      <a href="analyzer.html" class="btn-primary">Analyze now</a>
+    </header>
+
+    <main class="container">
+      <section class="hero" id="analyze-link">
+        <h1>Understand the fine print before you agree.</h1>
+        <p class="subtitle">
+          Reveal potentially unfair terms, hidden subscription traps, and manipulative website patterns in plain English.
+        </p>
+        <form id="heroAnalyzeForm" class="analyze-form">
+          <input
+            type="url"
+            id="heroUrlInput"
+            placeholder="Paste a website or policy URL…"
+            required
+            aria-label="Website or policy URL"
+          />
+          <button type="submit" class="btn-primary">Analyze website</button>
+        </form>
+        <p class="privacy-note">
+          Only the public URL or policy text you submit is inspected. No browsing history or account credentials are ever collected.
+        </p>
+      </section>
+
+      <section class="extension-section" id="browser-extension">
+        <div class="privacy-first-notice">
+          <strong>Privacy-First:</strong> All scanning happens locally in the browser — zero browsing history or page data leaves your device.
+        </div>
+        <h2>Live Browser Protection (Manifest V3)</h2>
+        <p>
+          OpenShield runs locally inside Chrome, Brave, and Edge to flag automatic renewals, drip pricing, confirm-shaming, and visual interference while you browse.
+        </p>
+        <ol class="install-steps">
+          <li>Open <code>chrome://extensions</code> in your Chromium browser.</li>
+          <li>Enable <strong>Developer mode</strong> in the top-right corner.</li>
+          <li>Click <strong>Load unpacked</strong> and select the <code>/extension</code> directory from this repository.</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="analyzer.html">Link Analyzer</a>
+        <a href="../README.md">Documentation</a>
+        <a href="../LICENSE">License (MIT)</a>
+        <a href="../CONTRIBUTING.md">Report an Issue</a>
+      </div>
+    </footer>
+
+    <script src="website.js"></script>
+  </body>
+</html>

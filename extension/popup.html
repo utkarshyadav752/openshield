@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenShield</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="os-header">
+      <div class="os-brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+        <span class="os-brand-name">OpenShield</span>
+      </div>
+      <div class="os-actions">
+        <button id="rescanBtn" class="os-btn-secondary" type="button" title="Rescan current page">
+          Rescan page
+        </button>
+      </div>
+    </header>
+
+    <div class="os-privacy-banner" role="note" aria-label="Privacy-First Local Analysis">
+      <span class="os-privacy-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+        <span>Privacy-First</span>
+      </span>
+      <span class="os-privacy-copy">All analysis occurs locally on your machine.</span>
+    </div>
+
+    <section class="os-site-bar">
+      <div class="os-domain-info">
+        <span class="os-label">Current site</span>
+        <strong id="siteDomain" class="os-domain">Loading...</strong>
+      </div>
+      <div class="os-controls-row">
+        <label class="os-toggle">
+          <input type="checkbox" id="pauseSiteToggle" />
+          <span>Pause on this site</span>
+        </label>
+        <label class="os-toggle">
+          <input type="checkbox" id="highlightToggle" checked />
+          <span>Highlight on page</span>
+        </label>
+      </div>
+    </section>
+
+    <section id="knownServiceBox" class="os-known-box hidden"></section>
+
+    <main class="os-main">
+      <div class="os-summary-row">
+        <span class="os-summary-title">Detected Page Warnings</span>
+        <span id="findingCountBadge" class="os-count-num">0</span>
+      </div>
+      <div id="findingsList" class="os-findings-list"></div>
+    </main>
+
+    <section id="policyLinksSection" class="os-links-section hidden">
+      <h2 class="os-section-heading">Verified Policy & Cancellation Links</h2>
+      <div id="policyLinksList" class="os-links-list"></div>
+    </section>
+
+    <footer class="os-footer">
+      <span><strong>Privacy-First:</strong> All scanning happens locally in the browser · Zero history uploaded</span>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "SavedReport": {
+      "title": "SavedReport",
+      "description": "A customer-saved OpenShield analysis report summary stored privately per authenticated user.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the authenticated user who owns this saved report.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title or filename of the analyzed website or document.",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "sourceType": {
+          "type": "string",
+          "description": "Type of source analyzed.",
+          "enum": ["url", "pdf", "image", "text"],
+          "minLength": 3,
+          "maxLength": 10
+        },
+        "targetUrl": {
+          "type": "string",
+          "description": "Analyzed URL or empty string for uploaded documents.",
+          "minLength": 0,
+          "maxLength": 500
+        },
+        "overallRiskLevel": {
+          "type": "string",
+          "description": "Overall risk screening level.",
+          "enum": ["Minimal", "Low", "Medium", "High", "Critical"],
+          "minLength": 3,
+          "maxLength": 16
+        },
+        "overallSummary": {
+          "type": "string",
+          "description": "Plain-English summary of the report findings.",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "findingsCount": {
+          "type": "number",
+          "description": "Total number of findings in the report."
+        },
+        "criticalCount": {
+          "type": "number",
+          "description": "Count of Critical risk findings."
+        },
+        "highCount": {
+          "type": "number",
+          "description": "Count of High risk findings."
+        },
+        "mediumCount": {
+          "type": "number",
+          "description": "Count of Medium risk findings."
+        },
+        "lowCount": {
+          "type": "number",
+          "description": "Count of Low risk findings."
+        },
+        "customerNotes": {
+          "type": "string",
+          "description": "Optional private note added by the customer.",
+          "minLength": 0,
+          "maxLength": 1000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the report was saved."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the saved report was last updated."
+        }
+      },
+      "required": [
+        "ownerId",
+        "title",
+        "sourceType",
+        "targetUrl",
+        "overallRiskLevel",
+        "overallSummary",
+        "findingsCount",
+        "criticalCount",
+        "highCount",
+        "mediumCount",
+        "lowCount",
+        "customerNotes",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/savedReports/{reportId}": {
+      "schema": "SavedReport",
+      "description": "Private customer-saved OpenShield analysis reports scoped strictly to the report owner."
+    }
+  }
+}

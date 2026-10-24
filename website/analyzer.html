@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenShield Policy Analyzer</title>
+    <link rel="stylesheet" href="website.css" />
+    <link rel="stylesheet" href="analyzer.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="brand">OpenShield</a>
+      <nav class="nav-links">
+        <a href="index.html#analyze-link">Analyze a link</a>
+        <a href="index.html#browser-extension">Browser extension</a>
+      </nav>
+      <a href="analyzer.html" class="btn-primary">Analyze now</a>
+    </header>
+
+    <main class="container">
+      <h1>Analyze Website Terms & Conditions</h1>
+      <form id="analyzerForm" class="analyze-form" style="margin-top: 1.25rem;">
+        <input
+          type="url"
+          id="analyzerUrlInput"
+          placeholder="Paste a website or policy URL…"
+          aria-label="Website or policy URL"
+        />
+        <button type="submit" class="btn-primary">Analyze website</button>
+      </form>
+
+      <div class="fallback-box">
+        <label for="analyzerTextInput" class="fallback-label">
+          Or paste policy text directly if the site blocks automated requests:
+        </label>
+        <textarea
+          id="analyzerTextInput"
+          rows="5"
+          placeholder="Paste Terms of Service, Privacy Policy, or Subscription terms text here…"
+        ></textarea>
+        <button type="button" id="analyzeTextBtn" class="btn-primary" style="margin-top: 0.75rem;">
+          Analyze policy text
+        </button>
+      </div>
+
+      <section id="reportOutput" class="report-output" aria-live="polite"></section>
+    </main>
+
+    <script src="analyzer.js"></script>
+  </body>
+</html>

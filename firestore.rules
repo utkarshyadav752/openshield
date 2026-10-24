@@ -1,0 +1,144 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Reusable Hardened Primitives
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    // 3. Validation Blueprint for SavedReport (Strictly synced with firebase-blueprint.json)
+    function isValidSavedReport(data) {
+      return data.keys().hasAll([
+          'ownerId',
+          'title',
+          'sourceType',
+          'targetUrl',
+          'overallRiskLevel',
+          'overallSummary',
+          'findingsCount',
+          'criticalCount',
+          'highCount',
+          'mediumCount',
+          'lowCount',
+          'customerNotes',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'ownerId',
+          'title',
+          'sourceType',
+          'targetUrl',
+          'overallRiskLevel',
+          'overallSummary',
+          'findingsCount',
+          'criticalCount',
+          'highCount',
+          'mediumCount',
+          'lowCount',
+          'customerNotes',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        data.ownerId is string &&
+        data.ownerId.size() >= 1 &&
+        data.ownerId.size() <= 128 &&
+        data.ownerId.matches('^[a-zA-Z0-9_\\-]+$') &&
+        data.ownerId == request.auth.uid &&
+        data.title is string &&
+        data.title.size() >= 1 &&
+        data.title.size() <= 200 &&
+        data.sourceType is string &&
+        data.sourceType.size() >= 3 &&
+        data.sourceType.size() <= 10 &&
+        data.sourceType in ['url', 'pdf', 'image', 'text'] &&
+        data.targetUrl is string &&
+        data.targetUrl.size() >= 0 &&
+        data.targetUrl.size() <= 500 &&
+        data.overallRiskLevel is string &&
+        data.overallRiskLevel.size() >= 3 &&
+        data.overallRiskLevel.size() <= 16 &&
+        data.overallRiskLevel in ['Minimal', 'Low', 'Medium', 'High', 'Critical'] &&
+        data.overallSummary is string &&
+        data.overallSummary.size() >= 1 &&
+        data.overallSummary.size() <= 1000 &&
+        data.findingsCount is number &&
+        data.findingsCount >= 0 &&
+        data.findingsCount <= 500 &&
+        data.criticalCount is number &&
+        data.criticalCount >= 0 &&
+        data.criticalCount <= 500 &&
+        data.highCount is number &&
+        data.highCount >= 0 &&
+        data.highCount <= 500 &&
+        data.mediumCount is number &&
+        data.mediumCount >= 0 &&
+        data.mediumCount <= 500 &&
+        data.lowCount is number &&
+        data.lowCount >= 0 &&
+        data.lowCount <= 500 &&
+        data.customerNotes is string &&
+        data.customerNotes.size() >= 0 &&
+        data.customerNotes.size() <= 1000 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isUpdateCustomerNotesAction() {
+      return incoming().ownerId == existing().ownerId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time;
+    }
+
+    // 4. Collection: /savedReports/{reportId}
+    match /savedReports/{reportId} {
+      allow get: if isSignedIn() && isEmailVerified() && isValidId(reportId) && existing().ownerId == request.auth.uid;
+
+      allow list: if isSignedIn() && isEmailVerified() && resource.data.ownerId == request.auth.uid;
+
+      allow create: if isSignedIn() &&
+        isEmailVerified() &&
+        isValidId(reportId) &&
+        isValidSavedReport(incoming()) &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if (
+        isSignedIn() &&
+        isEmailVerified() &&
+        isValidId(reportId) &&
+        isValidSavedReport(incoming()) &&
+        existing().ownerId == request.auth.uid && (
+          (isUpdateCustomerNotesAction() && incoming().diff(existing()).affectedKeys().hasOnly(['customerNotes', 'updatedAt']))
+        )
+      );
+
+      allow delete: if isSignedIn() &&
+        isEmailVerified() &&
+        isValidId(reportId) &&
+        existing().ownerId == request.auth.uid;
+    }
+  }
+}

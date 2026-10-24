@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "OpenShield — Terms & Dark Pattern Protection",
+  "short_name": "OpenShield",
+  "version": "1.0.0",
+  "description": "Privacy-first browser protection that detects unfair terms, hidden subscription traps, and manipulative dark patterns locally.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "OpenShield Protection"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["constants.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["sites.json"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@openshield/server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenShield backend SSRF-protected URL retriever and hybrid Terms & Conditions analysis service.",
+  "main": "../../server.ts"
+}
